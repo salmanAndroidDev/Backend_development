@@ -1,0 +1,16 @@
+<html>
+    <head>
+    </head>
+
+    <body>
+       <h1>DicLatin Translator </h1>
+       <form method="get" action={%url 'translatepage'%}>
+        <input type="text" name="orginaltext" placeholder="Enter text to translate" />
+        </br>
+        <input type="submit" value="Translate" />
+       </form>
+        <a href="{%url 'about'%}"><button onClick="">About Me</button> </a>
+
+    </body>
+
+</html>
