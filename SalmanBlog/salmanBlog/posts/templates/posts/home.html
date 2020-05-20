@@ -1,1 +1,8 @@
-<h1>You're Home is here</h1>
+<h1>Welcome To Salman Barani</h1>
+<h2>Latest Posts </h2>
+
+{% for post in posts.all %}
+
+    <h3>{{ post.title}}</h3>
+
+{% endfor %}

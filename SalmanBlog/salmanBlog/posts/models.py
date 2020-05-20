@@ -6,3 +6,6 @@ class Post(models.Model):
     pubDate = models.DateTimeField()
     image = models.ImageField(upload_to = 'media/')
     body = models.TextField()
+
+    def __str__(self):
+        return self.title

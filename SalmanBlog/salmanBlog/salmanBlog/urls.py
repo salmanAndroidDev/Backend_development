@@ -18,6 +18,6 @@ from django.contrib import admin
 from posts import views
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    url(r'^admin_which_belongs_to_salman_barani/', admin.site.urls),
     url(r'^$', views.home)
 ]
