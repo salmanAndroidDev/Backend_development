@@ -105,6 +105,10 @@
 </style>
 </head>
 <body>
+
+{% extends 'base.html' %}
+{% block content%}
+
 <div class="signup-form">
     {%if error%}
 		<div class="errornote">{{error}}</div>
@@ -129,5 +133,6 @@
     </form>
 	{% comment %} <div class="text-center small">Already have an account? <a href="{%url 'accounts:login'%}"">Login here</a></div> {% endcomment %}
 </div>
+{% endblock %}
 </body>
 </html>                            

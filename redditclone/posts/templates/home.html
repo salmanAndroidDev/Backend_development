@@ -1,1 +1,19 @@
-<h1>Here is Our home page</h1>
+{% extends 'base.html' %}
+{% block content%}
+
+<h1>The Home Page Of Nowhere</h1>
+<a href="{% url 'posts:create'%}">new post</a>
+
+<br />
+<br />
+
+{% for post in posts%}
+    <a href="{% url 'posts:upvote' post.id %}">Up</a>
+         {{post.votes_total}} 
+    <a href="{% url 'posts:downvote' post.id %}">Down</a> - 
+    <a href="{{ post.url}}">{{post.title}}</a>
+    <br />
+    {{post.pub_date}} by {{post.author.username}}
+    <br />
+{% endfor %}
+{% endblock %}

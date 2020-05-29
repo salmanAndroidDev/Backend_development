@@ -14,7 +14,7 @@ def create(request):
             post.author =  request.user
 
             post.save()
-            return redirect('/')
+            return redirect('home')
 
         else:
             return render(request, 'create.html',{'error': 'Please fill both fields!'})
@@ -22,6 +22,21 @@ def create(request):
     else:
         return render(request, 'create.html')
 
-def home(request):
-    return render(request, 'home.html')
+def home(request):    
+    posts = Post.objects.order_by('votes_total')        
+    return render(request, 'home.html', {'posts': posts})
+
+def upvote(request, pk):
+    post = Post.objects.get(pk= pk)
+    post.votes_total += 1
+    post.save()    
+    return redirect('home')
+
+def downvote(request, pk):
+    post = Post.objects.get(pk= pk)
+    if post.votes_total > 0:
+        post.votes_total -= 1
+        post.save()
+    return redirect('home')
+
 
