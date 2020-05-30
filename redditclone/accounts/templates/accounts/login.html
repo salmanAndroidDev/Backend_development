@@ -6,7 +6,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://fonts.googleapis.com/css?family=Roboto|Courgette|Pacifico:400,700" rel="stylesheet">
 <title>Reddit Clone Login</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
 <style type="text/css">
@@ -109,6 +108,10 @@
 </style>
 </head>
 <body>
+
+{% extends 'base.html' %}
+{% block content%}
+
 <div class="signup-form">
     {%if error%}
 		<div class="errornote">{{error}}</div>
@@ -137,5 +140,6 @@
     </form>
 	<div class="text-center small">Don't have any account? <a href="{%url 'accounts:signup'%}">Sign Up here</a></div>
 </div>
+{% endblock %}
 </body>
 </html>

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 def show_and_error(request, page_name, msg):
     return render(request, 'accounts/{}'.format(page_name), {"error": msg})
@@ -16,7 +16,7 @@ def signup(request):
             except User.DoesNotExist  as e:
                 user = User.objects.create_user(request.POST['username'], password= request.POST['password'])
                 login(request, user)
-                return render(request, 'accounts/signup.html')
+                return redirect('home')
         else:
             return show_and_error(request, 'signup.html', "Confirmed password isn't write!!!")
     else:    
@@ -30,11 +30,16 @@ def login_view(request):
             login(request, user)
             if 'next' in request.POST:
                 return redirect(request.POST['next'])
-            return render(request, 'accounts/login.html')
+            return redirect('home')
         else:
             return show_and_error(request, 'login.html', 'These info is not authentic!')
 
     else:
         return render(request, 'accounts/login.html')
 
-
+def logout_view(request):
+    if request.method == 'POST':
+        logout(request)
+        return redirect('home')
+    else:
+        return redirect('home')

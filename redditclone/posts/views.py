@@ -38,5 +38,3 @@ def downvote(request, pk):
         post.votes_total -= 1
         post.save()
     return redirect('home')
-
-

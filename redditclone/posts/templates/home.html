@@ -2,18 +2,36 @@
 {% block content%}
 
 <h1>The Home Page Of Nowhere</h1>
-<a href="{% url 'posts:create'%}">new post</a>
+<a class="btn btn-primary" href="{% url 'posts:create'%}">new post</a>
 
 <br />
 <br />
 
 {% for post in posts%}
-    <a href="{% url 'posts:upvote' post.id %}">Up</a>
-         {{post.votes_total}} 
-    <a href="{% url 'posts:downvote' post.id %}">Down</a> - 
-    <a href="{{ post.url}}">{{post.title}}</a>
-    <br />
-    {{post.pub_date}} by {{post.author.username}}
-    <br />
+
+    <table>
+        <tr>
+            <td style="padding-right: 20px;">
+                <a href="{% url 'posts:upvote' post.id %}" >
+                    <svg class="bi bi-caret-up-fill" width="18px" height="18px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7.247 4.86l-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/>
+                    </svg>
+                </a>
+                <br />    
+                 <span style="margin-left:3px;">{{post.votes_total}}</span> 
+                <br />
+                <a href="{% url 'posts:downvote' post.id %}">
+                    <svg class="bi bi-caret-down-fill" width="18px" height="18px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                </svg>
+                </a>
+            </td>
+            <td>
+                <a style="font-size: 16px;" href="{{ post.url}}">{{post.title}}</a>
+                <br />              
+                <span style="font-size: 14px;">{{post.pub_date_pretty}} by {{post.author.username}}</span>
+            </td>
+        </tr>
+    </table>
 {% endfor %}
 {% endblock %}
